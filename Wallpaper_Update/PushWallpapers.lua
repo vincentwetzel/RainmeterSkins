@@ -2,17 +2,21 @@ function Initialize()
     measure = SKIN:GetMeasure("MeasureGetWallpapers")
     lastValue = nil
 
-    -- Match the correct order here
     targets = {
-        -- parts[1]
-        "Wallpapers_Center",
-        -- parts[2]
-        "Wallpapers_Left",
-        -- parts[3]
-        "Wallpapers_Right",
-        -- parts[4]
-        "Wallpapers_Top"
+        Center = "Wallpapers_Center",
+        Left = "Wallpapers_Left",
+        Right = "Wallpapers_Right",
+        Top = "Wallpapers_Top"
     }
+end
+
+local function setWallpaper(position, name)
+    local skin = targets[position]
+    if skin and name and name ~= "" then
+        SKIN:Bang('!SetVariable WallpaperName "'..name..'" "'..skin..'"')
+        SKIN:Bang('!Update "'..skin..'"')
+        SKIN:Bang("!Log", "Pushed "..name.." -> "..skin)
+    end
 end
 
 function Update()
@@ -28,17 +32,10 @@ function Update()
     end
     lastValue = result
 
-    local parts = {}
     for token in string.gmatch(result, "([^|]+)") do
-        table.insert(parts, token)
-    end
-
-    -- Loop through parts and push to matching skins
-    for i, skin in ipairs(targets) do
-        if parts[i] then
-            SKIN:Bang('!SetVariable WallpaperName "'..parts[i]..'" "'..skin..'"')
-            SKIN:Bang('!Update "'..skin..'"')
-            SKIN:Bang("!Log", "Pushed "..parts[i].." → "..skin)
+        local position, name = token:match("^([^=]+)=(.*)$")
+        if position and name then
+            setWallpaper(position, name)
         end
     end
 end
