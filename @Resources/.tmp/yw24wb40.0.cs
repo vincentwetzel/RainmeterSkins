@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -72,17 +72,17 @@ public static class WallpaperReader {
 
         WallpaperMonitor left = monitors
             .Where(m => m.CenterX < primary.CenterX)
-            .OrderBy(m => m.CenterX)
+            .OrderByDescending(m => m.CenterX)
             .FirstOrDefault();
 
         WallpaperMonitor right = monitors
             .Where(m => m.CenterX > primary.CenterX)
-            .OrderByDescending(m => m.CenterX)
+            .OrderBy(m => m.CenterX)
             .FirstOrDefault();
 
         WallpaperMonitor top = monitors
             .Where(m => m.CenterY < primary.CenterY)
-            .OrderBy(m => m.CenterY)
+            .OrderByDescending(m => m.CenterY)
             .FirstOrDefault();
 
         return "Center=" + primary.Name
