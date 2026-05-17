@@ -1,0 +1,1 @@
+﻿/t:library /utf8output /R:"System.dll" /R:"C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll" /R:"System.Core.dll" /out:"C:\Rainmeter\Skins\@Resources\.tmp\vxruxp2l.dll" /debug- /optimize+ /warnaserror /optimize+  "C:\Rainmeter\Skins\@Resources\.tmp\vxruxp2l.0.cs"
